@@ -8,11 +8,11 @@ function getRandomHexColor() {
 
 const create = document.querySelector("button[data-create]");
 const destroy = document.querySelector("button[data-destroy]");
-const input = document.querySelector("input"); // Отримуємо поле введення
+const input = document.querySelector("input");
 const container = document.querySelector("#boxes");
 
 create.addEventListener("click", () => {
-  const amount = Number(input.value); // Отримуємо значення з поля вводу
+  const amount = Number(input.value);
   createBoxes(amount);
 });
 
@@ -20,7 +20,9 @@ destroy.addEventListener("click", destroyBoxes);
 
 function createBoxes(amount) {
   if (amount >= 1 && amount <= 100) {
-    container.innerHTML = ""; // Очищення перед створенням нових елементів
+    container.innerHTML = "";
+
+    let boxesHtml = "";
 
     for (let i = 0; i < amount; i++) {
       const size = 30 + 10 * i;
@@ -30,8 +32,10 @@ function createBoxes(amount) {
         background-color: ${getRandomHexColor()};
         margin: 5px;
       "></div>`;
-      container.insertAdjacentHTML("beforeend", box);
+      boxesHtml += box;
     }
+
+    container.innerHTML = boxesHtml;
   } else {
     console.log("Please enter a number between 1 and 100");
   }
